@@ -1,0 +1,20 @@
+name: Prevent Large Objects
+description: >-
+  This prevents you from adding git objects larger than a given size to your repository.
+  It looks at all commits in a pull request.
+inputs:
+  rev-list:
+    description: The lit of git revs to consider. Defaults to commits only in the current pull request
+    required: true
+    default: ${{ github.event.pull_request.base.sha }}..${{ github.sha }}
+  max-size:
+    description: The maximum object size to allow
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: sh
+      env:
+        max-size: ${{ inputs.max-size }}
+        rev-list: ${{ inputs.rev-list }}
+      run: git rev-list --objects "${rev-list}" | ./prevent-large-objects.sh "${max-size}"
