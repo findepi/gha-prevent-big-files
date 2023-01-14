@@ -23,7 +23,10 @@ while read -r obj_id path; do
   fi
   found="true"
 
-  echo "$size" "$path"
+  if [ "$GITHUB_ACTION" != "" ] && [ "$GITHUB_WORKFLOW" != "" ]; then
+    # Output special github workflow metadata
+    printf "::error file=%s::Large git object (%d bytes)\n" "$path" "$size"
+  fi
 done
 
 if [ "$found" = "false" ]; then
