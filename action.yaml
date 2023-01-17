@@ -17,4 +17,4 @@ runs:
       env:
         max-size: ${{ inputs.max-size }}
         rev-list: ${{ inputs.rev-list }}
-      run: git rev-list --objects "${rev-list}" | ./prevent-large-objects.sh "${max-size}"
+      run: git rev-list --objects "${rev-list}" | ${{ github.action_path }}/prevent-large-objects.sh "${max-size}"
