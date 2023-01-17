@@ -15,6 +15,6 @@ runs:
   steps:
     - shell: bash
       env:
-        max-size: ${{ inputs.max-size }}
-        rev-list: ${{ inputs.rev-list }}
-      run: git rev-list --objects "${rev-list}" | ${{ github.action_path }}/prevent-large-objects.sh "${max-size}"
+        max_size: ${{ inputs.max-size }}
+        rev_list: ${{ inputs.rev-list }}
+      run: git rev-list --objects "${rev_list}" | ${{ github.action_path }}/prevent-large-objects.sh "${max_size}"
