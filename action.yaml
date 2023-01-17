@@ -6,7 +6,7 @@ inputs:
   rev-list:
     description: The lit of git revs to consider. Defaults to commits only in the current pull request
     required: true
-    default: ${{ github.event.pull_request.base.sha }}..${{ github.sha }}
+    default: ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
   max-size:
     description: The maximum object size to allow
     required: true
