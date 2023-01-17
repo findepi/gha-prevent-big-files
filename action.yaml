@@ -13,7 +13,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - shell: sh
+    - shell: bash
       env:
         max-size: ${{ inputs.max-size }}
         rev-list: ${{ inputs.rev-list }}
