@@ -29,7 +29,7 @@ while read -r obj_id path; do
 
   if [ "$GITHUB_ACTION" != "" ] && [ "$GITHUB_WORKFLOW" != "" ]; then
     # Output special github workflow metadata
-    printf "::error file=%s::Large git object (%d bytes)\n" "$path" "$size"
+    echo "::error file=$path::File $path is too large ($size bytes, $max_size is the limit)"
   fi
 done
 
